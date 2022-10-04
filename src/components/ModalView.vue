@@ -1,6 +1,9 @@
 <template>
   <div class="modal-wrap">
     <div class="modal-main">
+      <div class="modal-img">
+        <img :src="'./images/modalcode.png'" alt="" />
+      </div>
       <h1>거제청년센터 클론코딩</h1>
       <p>
         이 사이트는 <b>스터디용</b>으로 제작되었으며 리소스는
@@ -8,8 +11,13 @@
         해당 사이트 관련 문제 사항이 있으시면 연락해주시면 삭제하겠습니다.<br />
         본 사이트는 Chrome 에 최적화되어 있습니다.
       </p>
-      <div class="modal-line"></div>
-      <span> </span>
+      <div class="modal-box">
+        <span> <em>1.</em> 반응형으로 제작 </span>
+        <span> <em>2.</em> Datepicker를 이용해 달력만들기 </span>
+        <span> <em>3.</em> 자바스크립트에서 html로 내용 넣기 </span>
+        <span> <em>4.</em> 비주얼,베너 swiper 적용 </span>
+        <span> </span>
+      </div>
 
       <button class="modal-close"><i class="fas fa-times"></i></button>
     </div>
@@ -71,14 +79,32 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 550px;
-  height: 400px;
-  background: url("@/assets/images/modalimg.png") no-repeat center #ddd;
+  height: 450px;
+  background: #fff;
   border-radius: 20px;
   padding: 10px;
   box-shadow: 0px 0px 7px 0px rgba(0 0 0 / 70%);
-  border: 5px solid rgba(0, 0, 0, 0.1);
 }
-
+.modal-img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 12px 22px 32px 6px rgb(94 94 105 / 25%),
+    0 8px 16px -8px rgb(94 94 105 / 30%), 0 -6px 16px -6px rgb(94 94 105 / 3%);
+}
+.modal-img img {
+  display: block;
+  width: 70%;
+  height: 70%;
+}
 .modal-main h1 {
   font-size: 30px;
   font-weight: 500;
@@ -93,6 +119,7 @@ export default {
   font-weight: 400;
   color: #333;
   line-height: 1.8;
+  margin-bottom: 20px;
 }
 
 .modal-main b {
@@ -106,21 +133,29 @@ export default {
   text-decoration: underline;
   color: #ed1c24;
 }
-.modal-line {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: #999;
-  margin-top: 40px;
-  margin-bottom: 20px;
+.modal-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  height: 230px;
+  margin: 0 auto;
+  background: #2f3346;
+  border-radius: 20px;
+  padding-left: 10px;
 }
 .modal-main span {
+  display: block;
   font-size: 16px;
   font-weight: 400;
-  color: #333;
+  color: #a96e39;
   line-height: 1.8;
-  padding: 10px;
+  padding: 5px 10px;
   letter-spacing: 0.5px;
+}
+.modal-main span em {
+  color: #7084a0;
+  padding-right: 5px;
 }
 .modal-close {
   position: absolute;
@@ -128,10 +163,18 @@ export default {
   top: 20px;
   border: 0;
   cursor: pointer;
-  font-size: 22px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
   color: #555;
-  background: transparent;
+  background: #727792;
   /* transition: transform 0.4s; */
+}
+.modal-close i {
+  font-size: 18px;
+  text-align: center;
+  line-height: 25px;
+  color: #e5e5e6;
 }
 
 .modal-close:hover {

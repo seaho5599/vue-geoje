@@ -58,7 +58,7 @@ export default {
     const attrs = [
       {
         key: "today",
-        highlight: "red",
+        highlight: "gray",
         dates: new Date(),
       },
     ];
