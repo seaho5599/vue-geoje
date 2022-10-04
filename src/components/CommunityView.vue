@@ -1,61 +1,75 @@
 <template>
-   <section class="community">
-      <div class="inner clearfix">
-        <div class="community-box">
-          <div class="community-top bg-line">
-            <h3>이룸소식</h3>
-            <a href="#" class="community-more">전체보기</a>
-          </div>
-          <div class="community-main">
-            <ul class="community-list data-info">
-              <li v-for="(item, index) in infoData" :key="index">
-                <a :href="item.infolink">{{item.infotxt}}</a>
-                <span>{{item.infodate}}</span>
-              </li>
-            </ul>
-          </div>
+  <section class="community">
+    <div class="inner clearfix">
+      <div class="community-box">
+        <div class="community-top bg-line">
+          <h3>이룸소식</h3>
+          <a href="#" class="community-more">전체보기</a>
         </div>
-        <div class="community-box">
-          <div class="community-top bg-line">
-            <h3>청년청책소식</h3>
-            <a href="#" class="community-more">전체보기</a>
-          </div>
-          <div class="community-main">
-            <ul class="community-list data-news">
-              <li v-for="(item, index) in newsData" :key="index">
-                <a :href="item.newslink">{{item.newstxt}}</a>
-                <span>{{item.newsdate}}</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        <div class="community-box calendar">
-          <div class="community-top">
-            <h3>센터일정</h3>
-            <a href="#" class="community-more">전체보기</a>
-          </div>
-          <div class="community-main"></div>
-
+        <div class="community-main">
+          <ul class="community-list data-info">
+            <li v-for="(item, index) in infoData" :key="index">
+              <a :href="item.infolink">{{ item.infotxt }}</a>
+              <span>{{ item.infodate }}</span>
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
+      <div class="community-box">
+        <div class="community-top bg-line">
+          <h3>청년청책소식</h3>
+          <a href="#" class="community-more">전체보기</a>
+        </div>
+        <div class="community-main">
+          <ul class="community-list data-news">
+            <li v-for="(item, index) in newsData" :key="index">
+              <a :href="item.newslink">{{ item.newstxt }}</a>
+              <span>{{ item.newsdate }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="community-box calendar">
+        <div class="community-top">
+          <h3>센터일정</h3>
+          <a href="#" class="community-more">전체보기</a>
+        </div>
+        <div class="community-main" style="padding-top: 0">
+          <Calendar is-expanded :attributes="attrs" />
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-import {useStore} from 'vuex'
-import {computed} from 'vue'
+import { useStore } from "vuex";
+import { computed } from "vue";
+import "v-calendar/dist/style.css";
+import { Calendar } from "v-calendar";
 export default {
-  setup(){
+  components: {
+    Calendar,
+  },
+  setup() {
     const store = useStore();
-    const infoData = computed(() => store.getters.getInfoData)
-    const newsData = computed(() => store.getters.getNewsData)
+    const infoData = computed(() => store.getters.getInfoData);
+    const newsData = computed(() => store.getters.getNewsData);
+    const attrs = [
+      {
+        key: "today",
+        highlight: "red",
+        dates: new Date(),
+      },
+    ];
 
-    return{
-      infoData,newsData
-    }
-  }
-}
+    return {
+      infoData,
+      newsData,
+      attrs,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -96,9 +110,8 @@ export default {
 }
 
 .bg-line {
-  background: url('@/assets/images/line.png') repeat-x;
+  background: url("@/assets/images/line.png") repeat-x;
   background-position: 0 100%;
-
 }
 
 .community-top h3 {
@@ -121,7 +134,7 @@ export default {
 }
 
 .community-more::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 11px;
@@ -132,7 +145,7 @@ export default {
 }
 
 .community-more::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 3px;
   top: 8px;
@@ -159,8 +172,6 @@ export default {
   overflow: hidden;
   border-bottom: 1px solid #e6e6e6;
   line-height: 53px;
-
-
 }
 
 .community-list li:last-child {
@@ -179,7 +190,6 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
 }
 
 .community-list li span {
@@ -188,13 +198,11 @@ export default {
   float: right;
   font-size: 15px;
   color: #444;
-
 }
 
 /* 커뮤니티 PC버전 */
 /* 커뮤니티 반응형 */
-@media all and (max-width:1000px) {
-
+@media all and (max-width: 1000px) {
   .community {
     padding: 5vw 0;
   }
@@ -216,7 +224,7 @@ export default {
   }
 }
 
-@media all and (max-width:640px) {
+@media all and (max-width: 640px) {
   .community-box:nth-child(2) {
     width: 100%;
     margin-right: 0;
@@ -227,5 +235,4 @@ export default {
     width: 100%;
   }
 }
-
 </style>
